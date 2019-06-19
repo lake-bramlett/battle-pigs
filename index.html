@@ -8,37 +8,45 @@
     <script src="js/scripts.js" charset="utf-8"></script>
   </head>
   <body>
-    <div class="headline">
-      <h1>Battle Pigs</h1>
-      <h4>A Game of Dice and Honor</h4>
-    </div>
-    <div class="players-container">
 
-      <div class="player-card player-1">
-        <p>Player 1 score: <span class="score">0</span></p>
+      <div class="headline">
+        <h1>Battle Pigs</h1>
+        <h4>A Game of Dice and Honor</h4>
       </div>
-      <div class="player-card player-2">
-        <p>Player 2 score: <span class="score">0</span></p>
+      <div class="battle-pigs-main">
+      <div class="players-container">
+
+        <div class="player-card player-1">
+          <p>Player 1 score: <span class="score">0</span></p>
+        </div>
+        <div class="player-card player-2">
+          <p>Player 2 score: <span class="score">0</span></p>
+        </div>
+      </div>
+      <div class="dice-display">
+        <div class="die1">
+          <img class="hidden" src="" alt="">
+        </div>
+        <div class="die2">
+          <img class="hidden" src="" alt="">
+        </div>
+      </div>
+      <div class="roll-controls">
+        <div class="sorry-message-holder">
+          <p><span class="sorry-message"></span></p>
+        </div>
+        <div class="round-score-holder">
+          <p>Current Round Score: <span class="round-score"></span> </p>
+        </div>
+        <p>Current Turn: Player <span class="current-turn-player">1</span></p>
+        <button class="roll-button" type="button" name="button">Roll!</button>
+        <button class="hold-button" type="button" name="button">Hold!</button>
       </div>
     </div>
-    <div class="dice-display">
-      <div class="die1">
-        <img class="hidden" src="" alt="">
-      </div>
-      <div class="die2">
-        <img class="hidden" src="" alt="">
-      </div>
-    </div>
-    <div class="roll-controls">
-      <div class="sorry-message-holder">
-        <p><span class="sorry-message"></span></p>
-      </div>
-      <div class="round-score-holder">
-        <p>Current Round Score: <span class="round-score"></span> </p>
-      </div>
-      <p>Current Turn: Player <span class="current-turn-player">1</span></p>
-      <button class="roll-button" type="button" name="button">Roll!</button>
-      <button class="hold-button" type="button" name="button">Hold!</button>
+    <div class="hidden battle-pigs-win">
+      <h1> <span class="player-winner"></span> YOU WIN!!</h1>
+      <img class="pig-image" src="img/piggy.png" alt="">
+      <img class="fire-image" src="img/fire.png" alt="">
     </div>
   </body>
 </html>

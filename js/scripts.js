@@ -97,6 +97,13 @@ function printDiceValues (diceRollResult){
   $(".die2 img").removeClass("hidden").attr('src', 'img/' + imageArray[diceRollResult[1] - 1]);
 }
 
+function pigWinner() {
+  $(".player-winner").text('Player ' + (currentTurnID + 1));
+  // $(".player-winner").text(currentRoster.players[currentTurnID].name);
+  $(".battle-pigs-main").hide();
+  $(".battle-pigs-win").show();
+}
+
 function endTurn(){
   totalScore += roundScore;
   currentRoster.players[currentTurnID].score += roundScore;
@@ -109,7 +116,7 @@ function endTurn(){
   $(".round-score").text(roundScore);
   if (currentRoster.players[currentTurnID].score >= 100) {
     console.log('You win!');
-    alert('Player' + (currentTurnID + 1) + ' WINS!!!')
+    pigWinner();
   }
 
   turnSwap()

@@ -4,7 +4,7 @@ html{
 }
 
 body{
-  height: 100vh;
+  //height: 100vh;
   background-image: url('../img/curtain.png');
   background-position: top;
   background-repeat: no-repeat;
@@ -20,6 +20,7 @@ body{
   text-transform: uppercase;
   letter-spacing: 10px;
   margin-bottom: 1%;
+  font-size: 50px;
 }
 
 .headline h4 {
@@ -41,10 +42,12 @@ body{
 
 .player-card {
   display: inline;
+  margin: 5%;
 }
 
 .player-card p {
   display: inline;
+  font-size: 1.5rem;
   width: 500px;
   height: 300px;
   //background-color: pink;
@@ -88,6 +91,7 @@ body{
 }
 
 button {
+  min-width: 85px;
   font-size: 20px;
   width: 25%;
   font-weight: 700;
@@ -96,7 +100,64 @@ button {
   border: none;
   border-radius: 0px;
   background-color: gold;
-  color: #ffffff;
+  color: #000000;
   padding: 5px;
   text-transform: uppercase;
+  margin-bottom: 3%;
+}
+
+button:hover {
+  background-color: black;
+  color: #ffffff;
+}
+
+
+
+
+.battle-pigs-win h1{
+  text-align: center;
+  text-transform: uppercase;
+}
+
+
+.battle-pigs-win{
+  text-align: center;
+}
+
+img.fire-image {
+  position: fixed;
+  bottom: -165px;
+  left: -10px;
+  width: 101%;
+  z-index: -2;
+}
+
+img.pig-image{
+  height: 40vh;
+  margin: auto;
+  top: 42%;
+  left: 33%;
+  z-index: -1;
+}
+
+@media screen and (min-width: 596px) {
+  button.roll-button {
+    border-radius: 25px 0px 0px 25px;
+  }
+  button.hold-button {
+    border-radius: 0px 25px 25px 0px;
+  }
+}
+
+@media screen and (max-width: 595px) {
+  button.roll-button {
+    border-radius: 10px 10px 0px 0px;
+  }
+  button.hold-button {
+    border-radius: 0px 0px 10px 10px;
+  }
+  .die1 img, .die2 img{
+    width: 35%;
+    margin: auto;
+  }
 }
