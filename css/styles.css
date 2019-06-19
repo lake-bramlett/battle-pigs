@@ -1,0 +1,26 @@
+
+
+.players-container {
+  width: 80%;
+  margin: auto;
+  background-color: lightgreen;
+  text-align: center;
+}
+
+.player-card {
+  display: inline;
+}
+
+.player-card p {
+  display: inline;
+  width: 500px;
+  height: 300px;
+  background-color: pink;
+}
+
+.roll-controls {
+  width: 30%;
+  margin: auto;
+  text-align: center;
+  background-color: lightblue;
+}
