@@ -84,12 +84,15 @@ function diceRoll () {
   return twoDice;
 }
 
+
 function printScores() {
   $('.player-' + (currentTurnID + 1) + ' .score').text(currentRoster.players[currentTurnID].score);
 }
 
 function turnView(){
   $(".current-turn-player").text(currentTurnID + 1);
+  $(".player-1 p").toggleClass('player-turn');
+  $(".player-2 p").toggleClass('player-turn');
 }
 
 function printDiceValues (diceRollResult){
