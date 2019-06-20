@@ -64,13 +64,6 @@ body{
   border-radius: 0px 25px 25px 0px;
 } */
 
-.players-container .player-card:nth-child(odd) p{
-  border-radius: 25px 0px 0px 25px;
-}
-
-.players-container .player-card:nth-child(even) p{
-  border-radius: 0px 25px 25px 0px;
-}
 
 .roll-controls {
   width: 30%;

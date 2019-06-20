@@ -39,13 +39,13 @@ function turnSwap () {
         currentRoster.players[currentTurnID].myTurn = false;
         currentRoster.players[currentTurnID + 1].myTurn = true;
         currentTurnID ++
-        turnView()
+        addTurnView()
         console.log(currentRoster.players);
       } else if (currentTurnID === currentRoster.players.length -1) {
         currentRoster.players[currentTurnID].myTurn = false;
         currentRoster.players[0].myTurn = true;
         currentTurnID = 0;
-        turnView()
+        addTurnView()
         console.log(currentRoster.players);
       } else {
         console.log('you skipped the step');
@@ -113,9 +113,10 @@ function computerRoundEval (){
 }
 
 function compTurn() {
+  roundScore = 0;
   var computerRoller = true;
   var computerTurns = 0;
-  while (computerRoller === true) {
+  while (computerRoller === true && roundScore < 18) {
     var diceRollResult = diceRoll();
     console.log(diceRollResult);
     roundScore += (diceRollResult[0] + diceRollResult[1]);
@@ -125,19 +126,23 @@ function compTurn() {
     console.log("computer turns: " + computerTurns);
     // tallying score
     console.log("round score: " + roundScore);
-    computerRoller = computerRoundEval();
+    // computerRoller = computerRoundEval();
 
   }
   console.log("we are done with the while loop");
   totalScore += roundScore;
   currentRoster.players[currentTurnID].score += roundScore;
-
+  if (currentRoster.players[currentTurnID].score >= 100) {
+    pigWinner();
+    pigWinnerReset();
+  };
   printScores();
   roundScore = 0;
 }
 
 
 function endTurn(){
+  removeTurnView();
   totalScore += roundScore;
   currentRoster.players[currentTurnID].score += roundScore;
   printScores();
@@ -156,6 +161,7 @@ function endTurn(){
   turnSwap();
   if (currentRoster.players[currentTurnID].isComputer === true){
     compTurn();
+    removeTurnView();
     turnSwap();
   }
 }//function endTurn
@@ -198,11 +204,14 @@ function printScores() {
   $('.player-' + (currentTurnID + 1) + ' .score').text(currentRoster.players[currentTurnID].score);
 }
 
-function turnView(){
+function addTurnView(){
   console.log(currentTurnID);
-  $(".player-" + currentTurnID + " p").removeClass('player-turn');
   $(".player-" + (currentTurnID + 1) + " p").addClass('player-turn');
   $(".current-turn-player").text(currentTurnID + 1);
+}
+
+function removeTurnView(){
+  $(".player-" + (currentTurnID + 1) + " p").removeClass('player-turn');
 }
 
 function printDiceValues (diceRollResult){
@@ -225,7 +234,7 @@ function pigWinner() {
     $(".start-game").click(function(){
       $(".battle-pigs-addplayer").hide();
       $(".battle-pigs-main").show();
-      turnView();
+      addTurnView();
       currentRoster.players[0].myTurn = true;
     })
 
