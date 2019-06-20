@@ -35,7 +35,7 @@ body{
   margin-right: auto;
   margin-top: 10%;
   margin-bottom: 5%;
-
+  overflow-wrap: break-word;
   //background-color: lightgreen;
   text-align: center;
 }
@@ -43,6 +43,7 @@ body{
 .player-card {
   display: inline;
   margin: 5%;
+  line-height: 7.5rem;
 }
 
 .player-card p {
@@ -55,11 +56,19 @@ body{
   //background-color: pink;
 }
 
-.player-1 p {
+/* .player-1 p {
   border-radius: 25px 0px 0px 25px;
 }
 
 .player-2 p {
+  border-radius: 0px 25px 25px 0px;
+} */
+
+.players-container .player-card:nth-child(odd) p{
+  border-radius: 25px 0px 0px 25px;
+}
+
+.players-container .player-card:nth-child(even) p{
   border-radius: 0px 25px 25px 0px;
 }
 
@@ -153,6 +162,17 @@ img.pig-image{
 .player-turn {
   background-color: gold;
   color: #000000;
+}
+
+.battle-pigs-addplayer{
+  text-align: center;
+}
+
+
+
+.player-name-holder{
+  text-align: center;
+  margin-bottom: 3%;
 }
 
 @media screen and (min-width: 596px) {

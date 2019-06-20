@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>BATTLE PIGS</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/jquery-3.4.1.js" charset="utf-8"></script>
     <script src="js/scripts.js" charset="utf-8"></script>
@@ -13,35 +13,54 @@
         <h1>Battle Pigs</h1>
         <h4>A Game of Dice and Honor</h4>
       </div>
-      <div class="battle-pigs-main">
-      <div class="players-container">
+      <div class="battle-pigs-addplayer">
+        <div class="player-name-holder">
+          <form class="input-player-name-form" action="index.html" method="post">
 
-        <div class="player-card player-1">
-          <p class="player-turn">Player 1 score: <span class="score">0</span></p>
+          <label for="">Enter your name:</label>
+          <input class="input-player-name" type="text" name="" value="">
         </div>
-        <div class="player-card player-2">
-          <p>Player 2 score: <span class="score">0</span></p>
+        <div>
+          <button class="add-player-button" type="button" name="button">Add Player</button>
+        </div>
+        <div>
+          <button class="add-computer-button" type="button" name="button">Add Computer Player</button>
+        </div>
+      </form>
+        <div>
+          <button class="start-game" type="button" name="button">Start!</button>
         </div>
       </div>
-      <div class="dice-display">
-        <div class="die1">
-          <img class="hidden" src="" alt="">
+
+      <div class="hidden battle-pigs-main">
+        <div class="players-container">
+
+          <!-- <div class="player-card player-1">
+            <p class="player-turn">Player 1 score: <span class="score">0</span></p>
+          </div>
+          <div class="player-card player-2">
+            <p>Player 2 score: <span class="score">0</span></p>
+          </div> -->
         </div>
-        <div class="die2">
-          <img class="hidden" src="" alt="">
+        <div class="dice-display">
+          <div class="die1">
+            <img class="hidden" src="" alt="">
+          </div>
+          <div class="die2">
+            <img class="hidden" src="" alt="">
+          </div>
         </div>
-      </div>
-      <div class="roll-controls">
-        <div class="sorry-message-holder">
-          <p><span class="sorry-message"></span></p>
+        <div class="roll-controls">
+          <div class="sorry-message-holder">
+            <p><span class="sorry-message"></span></p>
+          </div>
+          <div class="round-score-holder">
+            <p>Current Round Score: <span class="round-score"></span> </p>
+          </div>
+          <p>Current Turn: Player <span class="current-turn-player">1</span></p>
+          <button class="roll-button" type="button" name="button">Roll</button>
+          <button class="hold-button" type="button" name="button">Hold</button>
         </div>
-        <div class="round-score-holder">
-          <p>Current Round Score: <span class="round-score"></span> </p>
-        </div>
-        <p>Current Turn: Player <span class="current-turn-player">1</span></p>
-        <button class="roll-button" type="button" name="button">Roll</button>
-        <button class="hold-button" type="button" name="button">Hold</button>
-      </div>
     </div>
     <div class="hidden battle-pigs-win">
       <h1> <span class="player-winner"></span> YOU WIN!!</h1>

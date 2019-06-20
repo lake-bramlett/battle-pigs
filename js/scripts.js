@@ -3,30 +3,32 @@ function PlayerRoster () {
 }
 
 function Player(name, score, myTurn) {
-  this.name = name
+  this.name = name;
   this.score = score;
   this.myTurn = myTurn;
+  this.isComputer = false;
 }
+
+function ComputerPlayer(name, score, myTurn){
+  this.name = name;
+  this.score = score;
+  this.myTurn = myTurn;
+  this.isComputer = true;
+}
+
 
 PlayerRoster.prototype.addPlayer = function(playerToAdd){
   this.players.push(playerToAdd);
 }
 
 //variables to be scopred later//
-var playerOne = new Player ('player person', 0, true);
-var playerTwo = new Player ('player girl', 0, false);
-var playerThree = new Player ('player man', 0, false);
-var playerFour = new Player ('player dog', 0, false);
-var playerFive = new Player ('player boy', 0, false);
 var currentRoster = new PlayerRoster ();
 
 var currentTurnID = 0;
 
 var imageArray = ["one.svg", "two.svg", "three.svg", "four.svg", "five.svg", "six.svg"];
 
-// this is a method running to add Player One to the roster
-currentRoster.addPlayer(playerOne);
-currentRoster.addPlayer(playerTwo);
+
 
 
 
@@ -72,6 +74,9 @@ function turnSwap () {
 
 var roundScore = 0;
 var totalScore = 0;
+var totalPlayers = 0;
+var roundCount = 0;
+var gameTurn = 0;
 //
 
 function diceRoll () {
@@ -84,28 +89,6 @@ function diceRoll () {
   return twoDice;
 }
 
-
-function printScores() {
-  $('.player-' + (currentTurnID + 1) + ' .score').text(currentRoster.players[currentTurnID].score);
-}
-
-function turnView(){
-  $(".current-turn-player").text(currentTurnID + 1);
-  $(".player-1 p").toggleClass('player-turn');
-  $(".player-2 p").toggleClass('player-turn');
-}
-
-function printDiceValues (diceRollResult){
-  $(".die1 img").removeClass("hidden").attr('src', 'img/' + imageArray[diceRollResult[0] - 1]);
-  $(".die2 img").removeClass("hidden").attr('src', 'img/' + imageArray[diceRollResult[1] - 1]);
-}
-
-function pigWinner() {
-  $(".player-winner").text('Player ' + (currentTurnID + 1));
-  // $(".player-winner").text(currentRoster.players[currentTurnID].name);
-  $(".battle-pigs-main").hide();
-  $(".battle-pigs-win").show();
-}
 
 function endTurn(){
   totalScore += roundScore;
@@ -145,14 +128,77 @@ function endTurn(){
 
 
 
-$(document).ready(function(){
 
-  $('.roll-button').click(function() {
-    diceRollRound();
+  ///////////////// UI LOGIC
+
+  var imageArray = ["one.svg", "two.svg", "three.svg", "four.svg", "five.svg", "six.svg"];
+
+  function addPlayerCard() {
+  $('.players-container').append('<div class="player-card player-' + (totalPlayers+1) + '"><p class="">' + currentRoster.players[totalPlayers].name + '&nbsp;score:&nbsp;<span class="score">0</span></p></div>')
+  totalPlayers ++;
+};
+
+function printScores() {
+  $('.player-' + (currentTurnID + 1) + ' .score').text(currentRoster.players[currentTurnID].score);
+}
+
+function turnView(){
+  console.log(currentTurnID);
+  $(".player-" + currentTurnID + " p").removeClass('player-turn');
+  $(".player-" + (currentTurnID + 1) + " p").addClass('player-turn');
+  $(".current-turn-player").text(currentTurnID + 1);
+}
+
+function printDiceValues (diceRollResult){
+  $(".die1 img").removeClass("hidden").attr('src', 'img/' + imageArray[diceRollResult[0] - 1]);
+  $(".die2 img").removeClass("hidden").attr('src', 'img/' + imageArray[diceRollResult[1] - 1]);
+}
+
+function pigWinner() {
+  $(".player-winner").text(currentRoster.players[currentTurnID].name);
+  // $(".player-winner").text(currentRoster.players[currentTurnID].name);
+  $(".battle-pigs-main").hide();
+  $(".battle-pigs-win").show();
+}
+
+/////////////////// BUTTONS AND EVENT TRIGGERS
+
+  $(document).ready(function(){
+
+
+    $(".start-game").click(function(){
+      $(".battle-pigs-addplayer").hide();
+      $(".battle-pigs-main").show();
+      turnView();
+      currentRoster.players[0].myTurn = true;
+    })
+
+    $(".add-player-button").click(function(){
+      var inputPlayer = new Player ($(".input-player-name").val(), 0, false);
+      currentRoster.addPlayer(inputPlayer);
+      addPlayerCard();
+      console.log("Added new player to roster:" + $(".input-player-name").val());
+      console.log(currentRoster);
+    })
+
+    $(".add-computer-button").click(function(){
+      console.log("01010101");
+      var newComputer = new ComputerPlayer ($(".input-player-name").val(), 0, false);
+      if(newComputer.name === ""){
+        newComputer.name = "Computer";
+      }
+      currentRoster.addPlayer(newComputer);
+      addPlayerCard();
+      console.log(currentRoster);
+    })
+
+    $('.roll-button').click(function() {
+      diceRollRound();
+    });
+    $('.hold-button').click(function() {
+      endTurn();
+    });
+
+
+
   });
-  $('.hold-button').click(function() {
-    endTurn();
-  });
-
-
-});
